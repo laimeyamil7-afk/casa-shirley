@@ -1,0 +1,52 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import PageHero from "@/components/PageHero.astro";
+import { getAcademyCourse } from "@/lib/academy";
+
+const course = await getAcademyCourse();
+---
+
+<Layout title="Inscripción — Global Conexión" description="Solicitud de inscripción a Global Conexión Importación — Casa Shirley.">
+  <PageHero
+    eyebrow="Inscripción"
+    title={course.ctaLabel}
+    description="Completá tus datos. En la versión final recibirás confirmación por email o WhatsApp."
+  />
+
+  <section class="section-padding pt-0">
+    <form
+      id="enroll-form"
+      class="container-narrow max-w-xl rounded-2xl border border-border bg-white p-8 shadow-sm space-y-4"
+    >
+      <p class="text-xs text-muted">Demo: al enviar serás redirigido a la página de confirmación.</p>
+      <label class="block text-sm">
+        <span class="font-medium">Nombre y apellido</span>
+        <input required name="nombre" class="mt-1 w-full rounded-lg border border-border px-3 py-2" />
+      </label>
+      <label class="block text-sm">
+        <span class="font-medium">Email</span>
+        <input required type="email" name="email" class="mt-1 w-full rounded-lg border border-border px-3 py-2" />
+      </label>
+      <label class="block text-sm">
+        <span class="font-medium">Teléfono / WhatsApp</span>
+        <input required name="telefono" class="mt-1 w-full rounded-lg border border-border px-3 py-2" />
+      </label>
+      <label class="block text-sm">
+        <span class="font-medium">Ciudad</span>
+        <input name="ciudad" class="mt-1 w-full rounded-lg border border-border px-3 py-2" />
+      </label>
+      <label class="block text-sm">
+        <span class="font-medium">Mensaje (opcional)</span>
+        <textarea name="mensaje" rows="3" class="mt-1 w-full rounded-lg border border-border px-3 py-2"></textarea>
+      </label>
+      <button type="submit" class="btn-primary w-full">Enviar solicitud</button>
+    </form>
+  </section>
+</Layout>
+
+<script>
+  document.getElementById("enroll-form")?.addEventListener("submit", (e) => {
+    e.preventDefault();
+    window.location.href = "/academia/gracias";
+  });
+</script>

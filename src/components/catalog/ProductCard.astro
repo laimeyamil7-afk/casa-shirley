@@ -1,0 +1,43 @@
+---
+import type { Product } from "@/lib/catalog";
+import { getBrandName, getCategoryLabel } from "@/lib/catalog";
+import { whatsappProductMessage, whatsappUrl } from "@/config/site";
+import ProductImage from "./ProductImage.astro";
+
+interface Props {
+  product: Product;
+}
+
+const { product } = Astro.props;
+---
+
+<article class="group flex flex-col overflow-hidden rounded-2xl border border-border bg-white shadow-sm transition hover:shadow-md">
+  <a href={`/maquinas/${product.slug}`} class="block aspect-[4/3]">
+    <ProductImage
+      src={product.images[0]}
+      alt={product.name}
+      class="h-full group-hover:scale-[1.02]"
+    />
+  </a>
+  <div class="flex flex-1 flex-col p-5">
+    <p class="text-xs font-semibold uppercase tracking-wide text-brand-600">{getBrandName(product.brand)}</p>
+    <h3 class="mt-1 font-semibold text-ink leading-snug">
+      <a href={`/maquinas/${product.slug}`} class="hover:text-brand-700">{product.name}</a>
+    </h3>
+    <p class="mt-2 text-sm text-muted line-clamp-2">{product.shortDescription}</p>
+    <p class="mt-2 text-xs text-muted">{getCategoryLabel(product.category)}</p>
+    <div class="mt-auto flex flex-col gap-2 pt-4 sm:flex-row">
+      <a href={`/maquinas/${product.slug}`} class="btn-secondary flex-1 text-center text-xs py-2.5">
+        Ver ficha
+      </a>
+      <a
+        href={whatsappUrl(whatsappProductMessage(product.name))}
+        class="btn-whatsapp flex-1 text-center text-xs py-2.5"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Consultar
+      </a>
+    </div>
+  </div>
+</article>

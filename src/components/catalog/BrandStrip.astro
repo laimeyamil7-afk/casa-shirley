@@ -1,0 +1,65 @@
+---
+import { marqueeBrands as brandList } from "@/lib/catalog";
+
+const marqueeBrands = [...brandList, ...brandList];
+---
+
+<section class="border-y border-border bg-white py-8 overflow-hidden">
+  <p class="text-center text-xs font-semibold uppercase tracking-widest text-muted mb-6">
+    Marcas con las que trabajamos
+  </p>
+  <div class="brand-marquee relative" aria-hidden="false">
+    <div class="brand-marquee-track">
+      {
+        marqueeBrands.map((brand) => (
+          <a
+            href="/marcas"
+            class="brand-marquee-item mx-10 flex shrink-0 items-center justify-center opacity-90 transition hover:opacity-100"
+            aria-label={brand.name}
+          >
+            <img
+              src={brand.logo}
+              alt={brand.name}
+              width="180"
+              height="56"
+              class="h-12 w-auto max-w-[160px] object-contain md:h-14 md:max-w-[180px]"
+              loading="lazy"
+              draggable="false"
+            />
+          </a>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .brand-marquee {
+    mask-image: linear-gradient(
+      to right,
+      transparent,
+      black 8%,
+      black 92%,
+      transparent
+    );
+  }
+
+  .brand-marquee-track {
+    display: flex;
+    width: max-content;
+    animation: brand-scroll 45s linear infinite;
+  }
+
+  .brand-marquee:hover .brand-marquee-track {
+    animation-play-state: paused;
+  }
+
+  @keyframes brand-scroll {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+</style>

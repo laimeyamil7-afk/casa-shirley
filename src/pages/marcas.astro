@@ -1,0 +1,60 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import PageHero from "@/components/PageHero.astro";
+import { brands, marqueeBrands } from "@/lib/catalog";
+import { whatsappUrl } from "@/config/site";
+
+const catalogBrandIds = new Set(brands.map((b) => b.id));
+const partnerBrands = marqueeBrands.filter((b) => !catalogBrandIds.has(b.id));
+---
+
+<Layout title="Marcas" description="Marcas de maquinaria textil: Pegasus, Jack, Siruba, Kansai, Juki y más en Casa Shirley.">
+  <PageHero
+    eyebrow="Marcas"
+    title="Marcas con las que trabajamos"
+    description="Líneas reconocidas en la industria textil. Consultá modelos, configuraciones y disponibilidad con nuestro equipo."
+  />
+
+  <section class="section-padding">
+    <div class="container-narrow grid gap-8 md:grid-cols-2">
+      {
+        brands.map((brand) => (
+          <article class="rounded-2xl border border-border bg-white p-8 shadow-sm">
+            <img src={brand.logo} alt={brand.name} class="h-12 w-auto object-contain" width="160" height="48" />
+            {brand.highlight && (
+              <p class="mt-4 text-xs font-semibold uppercase tracking-wide text-brand-600">{brand.highlight}</p>
+            )}
+            <h2 class="mt-2 text-xl font-bold text-ink">{brand.name}</h2>
+            <p class="mt-1 text-sm font-medium text-muted">{brand.tagline}</p>
+            <p class="mt-4 text-sm text-muted leading-relaxed">{brand.description}</p>
+            <a href={`/maquinas?brand=${brand.id}`} class="mt-6 inline-flex text-sm font-semibold text-brand-600 hover:text-brand-700">
+              Ver máquinas {brand.name} →
+            </a>
+          </article>
+        ))
+      }
+    </div>
+
+    {partnerBrands.length > 0 && (
+      <div class="container-narrow mt-16">
+        <h2 class="text-xl font-bold text-ink text-center">Otras marcas del portfolio</h2>
+        <p class="mt-2 text-center text-sm text-muted max-w-2xl mx-auto">
+          También trabajamos con líneas complementarias según disponibilidad e importación directa.
+        </p>
+        <ul class="mt-10 grid grid-cols-2 gap-6 sm:grid-cols-3 lg:grid-cols-4 items-center">
+          {partnerBrands.map((brand) => (
+            <li class="flex justify-center rounded-xl border border-border bg-surface px-4 py-6">
+              <img src={brand.logo} alt={brand.name} class="h-10 w-auto max-w-full object-contain md:h-12" width="180" height="48" loading="lazy" />
+            </li>
+          ))}
+        </ul>
+      </div>
+    )}
+
+    <div class="container-narrow mt-12 text-center">
+      <a href={whatsappUrl("Hola Casa Shirley, consulto por marcas y modelos disponibles.")} class="btn-whatsapp" target="_blank" rel="noopener noreferrer">
+        Asesoramiento por WhatsApp
+      </a>
+    </div>
+  </section>
+</Layout>

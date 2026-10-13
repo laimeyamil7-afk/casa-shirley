@@ -1,0 +1,21 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { whatsappUrl } from "../../config/site";
+---
+
+<Layout title="Solicitud recibida" description="Gracias por tu interés en Global Conexión Importación.">
+  <section class="section-padding">
+    <div class="container-narrow max-w-xl text-center">
+      <h1 class="text-3xl font-bold text-ink">¡Gracias por tu interés!</h1>
+      <p class="mt-4 text-muted leading-relaxed">
+        Recibimos tu solicitud de inscripción (demo). En la versión final del sitio te contactaremos por email o WhatsApp para confirmar cupo y fechas.
+      </p>
+      <div class="mt-8 flex flex-col gap-3 sm:flex-row sm:justify-center">
+        <a href="/academia" class="btn-secondary">Volver a Global Conexión</a>
+        <a href={whatsappUrl("Hola Casa Shirley, envié una solicitud de inscripción a Global Conexión Importación.")} class="btn-whatsapp" target="_blank" rel="noopener noreferrer">
+          Escribir por WhatsApp
+        </a>
+      </div>
+    </div>
+  </section>
+</Layout>

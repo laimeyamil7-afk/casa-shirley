@@ -1,0 +1,24 @@
+---
+import Layout from "../layouts/Layout.astro";
+import PageHero from "../components/PageHero.astro";
+import { legalPlaceholders, site } from "../config/site";
+---
+
+<Layout title="Privacidad" description="Política de privacidad de Casa Shirley.">
+  <PageHero title="Política de privacidad" description="Borrador para demo — revisión legal pendiente." />
+
+  <section class="section-padding">
+    <div class="container-narrow prose-narrow space-y-4 text-muted">
+      <p>
+        {site.name} ({legalPlaceholders.razonSocial}) tratará los datos personales enviados a través de
+        formularios de contacto e inscripción únicamente para responder consultas y gestionar inscripciones
+        a programas formativos.
+      </p>
+      <p>
+        Los datos no serán cedidos a terceros salvo obligación legal. El titular podrá solicitar acceso,
+        rectificación o supresión escribiendo a {legalPlaceholders.email}.
+      </p>
+      <p class="text-sm italic">Texto placeholder — sustituir por política definitiva acordada con el cliente.</p>
+    </div>
+  </section>
+</Layout>

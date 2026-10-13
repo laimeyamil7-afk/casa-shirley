@@ -1,0 +1,91 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import PageHero from "@/components/PageHero.astro";
+import ProductCard from "@/components/catalog/ProductCard.astro";
+import { getProducts, categories, brands } from "@/lib/catalog";
+import type { BrandId, CategoryId } from "@/lib/catalog";
+
+const brandParam = Astro.url.searchParams.get("brand") as BrandId | null;
+const categoryParam = Astro.url.searchParams.get("category") as CategoryId | null;
+
+const allProducts = await getProducts();
+const products = allProducts.filter((p) => {
+  if (brandParam && p.brand !== brandParam) return false;
+  if (categoryParam && p.category !== categoryParam) return false;
+  return true;
+});
+
+const activeBrand = brandParam ? brands.find((b) => b.id === brandParam)?.name : null;
+const activeCategory = categoryParam ? categories.find((c) => c.id === categoryParam)?.label : null;
+---
+
+<Layout title="Máquinas" description="Catálogo de máquinas de coser industriales, repuestos y accesorios. Casa Shirley.">
+  <PageHero
+    eyebrow="Catálogo"
+    title="Máquinas y equipos"
+    description="Filtrá por marca o categoría. Precios y stock se confirman por WhatsApp."
+  >
+    {(activeBrand || activeCategory) && (
+      <p class="mt-4 text-sm font-medium text-brand-700">
+        Filtro activo:
+        {activeBrand && ` Marca ${activeBrand}`}
+        {activeBrand && activeCategory && " ·"}
+        {activeCategory && ` ${activeCategory}`}
+        <a href="/maquinas" class="ml-2 underline">Quitar filtros</a>
+      </p>
+    )}
+  </PageHero>
+
+  <section class="section-padding pt-8">
+    <div class="container-narrow">
+      <div class="flex flex-col gap-4 lg:flex-row lg:items-start lg:gap-10">
+        <aside class="lg:w-56 shrink-0 space-y-6">
+          <div>
+            <p class="text-xs font-semibold uppercase tracking-wide text-muted">Marca</p>
+            <ul class="mt-2 flex flex-wrap gap-2 lg:flex-col lg:gap-1">
+              <li><a href="/maquinas" class:list={["text-sm rounded-full px-3 py-1.5", !brandParam ? "bg-brand-100 text-brand-800 font-semibold" : "text-muted hover:bg-surface"]}>Todas</a></li>
+              {brands.map((b) => (
+                <li>
+                  <a
+                    href={`/maquinas?brand=${b.id}${categoryParam ? `&category=${categoryParam}` : ""}`}
+                    class:list={["text-sm rounded-full px-3 py-1.5", brandParam === b.id ? "bg-brand-100 text-brand-800 font-semibold" : "text-muted hover:bg-surface"]}
+                  >
+                    {b.name}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div>
+            <p class="text-xs font-semibold uppercase tracking-wide text-muted">Categoría</p>
+            <ul class="mt-2 flex flex-wrap gap-2 lg:flex-col lg:gap-1">
+              <li><a href={`/maquinas${brandParam ? `?brand=${brandParam}` : ""}`} class:list={["text-sm rounded-full px-3 py-1.5", !categoryParam ? "bg-brand-100 text-brand-800 font-semibold" : "text-muted hover:bg-surface"]}>Todas</a></li>
+              {categories.map((c) => (
+                <li>
+                  <a
+                    href={`/maquinas?category=${c.id}${brandParam ? `&brand=${brandParam}` : ""}`}
+                    class:list={["text-sm rounded-full px-3 py-1.5", categoryParam === c.id ? "bg-brand-100 text-brand-800 font-semibold" : "text-muted hover:bg-surface"]}
+                  >
+                    {c.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </aside>
+
+        <div class="flex-1">
+          {products.length === 0 ? (
+            <p class="text-muted">No hay productos con estos filtros. <a href="/maquinas" class="text-brand-600 underline">Ver todo el catálogo</a>.</p>
+          ) : (
+            <div class="grid gap-6 sm:grid-cols-2 xl:grid-cols-3">
+              {products.map((product) => (
+                <ProductCard product={product} />
+              ))}
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>

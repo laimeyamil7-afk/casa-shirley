@@ -1,0 +1,72 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import AddToCartButton from "@/components/commerce/AddToCartButton.astro";
+import ProductImage from "@/components/catalog/ProductImage.astro";
+import { getProducts, getProductBySlug, getBrandName, getCategoryLabel } from "@/lib/catalog";
+import { isCartActive } from "@/config/features";
+import { whatsappProductMessage, whatsappUrl } from "@/config/site";
+
+export async function getStaticPaths() {
+  const products = await getProducts();
+  return products.map((product) => ({
+    params: { slug: product.slug },
+  }));
+}
+
+const { slug } = Astro.params;
+const product = await getProductBySlug(slug!);
+
+if (!product) {
+  return Astro.redirect("/maquinas");
+}
+---
+
+<Layout title={product.name} description={product.shortDescription}>
+  <article class="section-padding">
+    <div class="container-narrow grid gap-10 lg:grid-cols-2">
+      <div class="overflow-hidden rounded-2xl border border-border">
+        <ProductImage src={product.images[0]} alt={product.name} class="aspect-[4/3] w-full" eager />
+      </div>
+      <div>
+        <p class="text-sm font-semibold uppercase tracking-wide text-brand-600">{getBrandName(product.brand)}</p>
+        <h1 class="mt-2 text-3xl font-bold text-ink">{product.name}</h1>
+        <p class="mt-2 text-sm text-muted">{getCategoryLabel(product.category)}</p>
+        <p class="mt-6 text-muted leading-relaxed">{product.description}</p>
+
+        <dl class="mt-8 grid gap-3 rounded-xl border border-border bg-surface p-6 text-sm">
+          {product.specs.map((spec) => (
+            <div class="flex justify-between gap-4 border-b border-border/60 pb-2 last:border-0 last:pb-0">
+              <dt class="text-muted">{spec.label}</dt>
+              <dd class="font-medium text-ink text-right">{spec.value}</dd>
+            </div>
+          ))}
+        </dl>
+
+        <p class="mt-4 text-sm text-muted">
+          Disponibilidad: <span class="font-medium capitalize text-ink">{product.stockStatus.replace("_", " ")}</span>
+          {product.price == null && " — consultar precio por WhatsApp"}
+        </p>
+
+        <div class="mt-8 flex flex-col gap-3 sm:flex-row">
+          <a
+            href={whatsappUrl(whatsappProductMessage(product.name))}
+            class="btn-whatsapp flex-1 text-center"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Consultar por WhatsApp
+          </a>
+          {isCartActive() && (
+            <AddToCartButton
+              productSlug={product.slug}
+              productName={product.name}
+              unitPrice={product.price}
+              class="flex-1"
+            />
+          )}
+        </div>
+        <a href="/maquinas" class="mt-6 inline-block text-sm font-semibold text-brand-600 hover:text-brand-700">← Volver al catálogo</a>
+      </div>
+    </div>
+  </article>
+</Layout>

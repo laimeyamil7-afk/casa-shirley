@@ -1,0 +1,302 @@
+[
+  {
+    "slug": "pegasus-m952-overlock-3-hilos",
+    "name": "PEGASUS M952 — Overlock 3 hilos",
+    "brand": "pegasus",
+    "category": "overlocks",
+    "shortDescription": "Alta velocidad y sobrehilado estable para producción continua.",
+    "description": "Overlock industrial de 3 hilos pensada para talleres y plantas que priorizan velocidad y terminaciones prolijas en telas livianas y medias.",
+    "specs": [
+      {
+        "label": "Hilos",
+        "value": "3"
+      },
+      {
+        "label": "Velocidad máx.",
+        "value": "7.000 ppm"
+      },
+      {
+        "label": "Uso",
+        "value": "Industrial"
+      }
+    ],
+    "images": [
+      "/images/products/pegasus-m52.png"
+    ],
+    "featured": true,
+    "published": true,
+    "price": null,
+    "stockStatus": "consultar"
+  },
+  {
+    "slug": "pegasus-m932-overlock-5-hilos",
+    "name": "PEGASUS M932 — Overlock 5 hilos seguridad",
+    "brand": "pegasus",
+    "category": "overlocks",
+    "shortDescription": "Puntada de seguridad para prendas de alto uso.",
+    "description": "Configuración de 5 hilos con puntada de seguridad, ideal para uniformes, denim liviano y producción que exige resistencia en la costura.",
+    "specs": [
+      {
+        "label": "Hilos",
+        "value": "5"
+      },
+      {
+        "label": "Agujas",
+        "value": "2"
+      },
+      {
+        "label": "Velocidad máx.",
+        "value": "7.000 ppm"
+      }
+    ],
+    "images": [
+      "/images/products/pegasus-m932.png"
+    ],
+    "featured": true,
+    "published": true,
+    "price": null,
+    "stockStatus": "consultar"
+  },
+  {
+    "slug": "jack-e4s-overlock-5-hilos",
+    "name": "JACK E4S-5 — Overlock 5 hilos",
+    "brand": "jack",
+    "category": "overlocks",
+    "shortDescription": "Eficiencia y bajo consumo para líneas de confección.",
+    "description": "Overlock electrónica de la línea Jack, orientada a productividad con operación fluida y mantenimiento accesible.",
+    "specs": [
+      {
+        "label": "Hilos",
+        "value": "5"
+      },
+      {
+        "label": "Motor",
+        "value": "Servo incorporado"
+      }
+    ],
+    "images": [
+      "/images/products/jack-k5e.png"
+    ],
+    "featured": false,
+    "published": true,
+    "price": null,
+    "stockStatus": "consultar"
+  },
+  {
+    "slug": "jack-c7-overlock-4-hilos",
+    "name": "JACK C7-4 — Overlock 4 hilos",
+    "brand": "jack",
+    "category": "overlocks",
+    "shortDescription": "Equilibrio entre versatilidad y rendimiento.",
+    "description": "Remalladora 4 hilos para terminaciones elásticas en confección general y talleres de moda.",
+    "specs": [
+      {
+        "label": "Hilos",
+        "value": "4"
+      },
+      {
+        "label": "Categoría",
+        "value": "Overlock"
+      }
+    ],
+    "images": [
+      "/images/products/jack-k5e.png"
+    ],
+    "featured": false,
+    "published": true,
+    "price": null,
+    "stockStatus": "consultar"
+  },
+  {
+    "slug": "dison-ds-664d-collareta",
+    "name": "DISON DS-664D — Collareta",
+    "brand": "dison",
+    "category": "collareta",
+    "shortDescription": "Terminaciones de cuello y hombro con acabado prolijo.",
+    "description": "Máquina collareta / tapa costura para producción de remeras, camisas y prendas con terminación visible de calidad.",
+    "specs": [
+      {
+        "label": "Tipo",
+        "value": "Collareta"
+      },
+      {
+        "label": "Uso",
+        "value": "Confección"
+      }
+    ],
+    "images": [
+      "/images/products/pegasus-m52.png"
+    ],
+    "featured": true,
+    "published": true,
+    "price": null,
+    "stockStatus": "consultar"
+  },
+  {
+    "slug": "dison-ds-500d-tapa-costura",
+    "name": "DISON DS-500D — Tapa costura",
+    "brand": "dison",
+    "category": "collareta",
+    "shortDescription": "Versatilidad para tapa costura y variantes de confección.",
+    "description": "Equipo Dison para tapa costura en líneas que requieren flexibilidad de ajuste y buen rendimiento diario.",
+    "specs": [
+      {
+        "label": "Tipo",
+        "value": "Tapa costura"
+      }
+    ],
+    "images": [
+      "/images/products/pegasus-m52.png"
+    ],
+    "featured": false,
+    "published": true,
+    "price": null,
+    "stockStatus": "consultar"
+  },
+  {
+    "slug": "baoyu-gt-550-collareta",
+    "name": "BAOYU GT-550 — Collareta",
+    "brand": "baoyu",
+    "category": "collareta",
+    "shortDescription": "Opción robusta con excelente relación costo-beneficio.",
+    "description": "Collareta Baoyu para talleres que inician o escalan producción con inversión controlada.",
+    "specs": [
+      {
+        "label": "Marca",
+        "value": "Baoyu"
+      },
+      {
+        "label": "Rubro",
+        "value": "Collareta"
+      }
+    ],
+    "images": [
+      "/images/products/baoyu-gt-550.png"
+    ],
+    "featured": false,
+    "published": true,
+    "price": null,
+    "stockStatus": "consultar"
+  },
+  {
+    "slug": "jack-jk-t1906p-botonera",
+    "name": "JACK JK-T1906P — Botonera",
+    "brand": "jack",
+    "category": "botonera",
+    "shortDescription": "Automatización para botones en series y producción seriada.",
+    "description": "Botonera industrial Jack para plantas que necesitan repetibilidad y tiemos de ciclo predecibles.",
+    "specs": [
+      {
+        "label": "Tipo",
+        "value": "Botonera"
+      },
+      {
+        "label": "Línea",
+        "value": "Jack industrial"
+      }
+    ],
+    "images": [
+      "/images/products/jack-k5e.png"
+    ],
+    "featured": false,
+    "published": true,
+    "price": null,
+    "stockStatus": "consultar"
+  },
+  {
+    "slug": "dison-ds-1900a-botonera",
+    "name": "DISON DS-1900A — Botonera",
+    "brand": "dison",
+    "category": "botonera",
+    "shortDescription": "Solución práctica para botonadura en confección.",
+    "description": "Botonera Dison con enfoque en facilidad de uso y mantenimiento para talleres medianos.",
+    "specs": [
+      {
+        "label": "Modelo",
+        "value": "DS-1900A"
+      }
+    ],
+    "images": [
+      "/images/products/pegasus-m52.png"
+    ],
+    "featured": false,
+    "published": true,
+    "price": null,
+    "stockStatus": "consultar"
+  },
+  {
+    "slug": "jack-jk-t3-cortadora",
+    "name": "JACK JK-T3 — Cortadora vertical",
+    "brand": "jack",
+    "category": "cortadoras",
+    "shortDescription": "Corte preciso para sala de corte y preparación de producción.",
+    "description": "Cortadora vertical Jack para talleres de confección que buscan seguridad y regularidad en el corte de materiales.",
+    "specs": [
+      {
+        "label": "Potencia",
+        "value": "850 W"
+      },
+      {
+        "label": "Hoja",
+        "value": "12\""
+      }
+    ],
+    "images": [
+      "/images/products/jack-k5e.png"
+    ],
+    "featured": true,
+    "published": true,
+    "price": null,
+    "stockStatus": "consultar"
+  },
+  {
+    "slug": "dison-ds-8720d-doble-aguja",
+    "name": "DISON DS-8720D — Doble aguja",
+    "brand": "dison",
+    "category": "doble-aguja",
+    "shortDescription": "Costuras paralelas para refuerzo y terminación.",
+    "description": "Doble aguja Dison para pespuntes decorativos o estructurales en denim, uniformes y outdoor.",
+    "specs": [
+      {
+        "label": "Agujas",
+        "value": "2"
+      },
+      {
+        "label": "Categoría",
+        "value": "Doble aguja"
+      }
+    ],
+    "images": [
+      "/images/products/pegasus-m52.png"
+    ],
+    "featured": false,
+    "published": true,
+    "price": null,
+    "stockStatus": "consultar"
+  },
+  {
+    "slug": "kit-accesorios-industrial",
+    "name": "Kit accesorios industriales — surtido importado",
+    "brand": "jack",
+    "category": "repuestos",
+    "shortDescription": "Pies, guías y consumibles para mantener la planta operativa.",
+    "description": "Selección de accesorios y repuestos de uso frecuente en talleres de confección. Consultá disponibilidad por modelo de máquina.",
+    "specs": [
+      {
+        "label": "Tipo",
+        "value": "Accesorios / repuestos"
+      },
+      {
+        "label": "Venta",
+        "value": "Mayor y menor"
+      }
+    ],
+    "images": [
+      "/images/products/jack-k5e.png"
+    ],
+    "featured": false,
+    "published": true,
+    "price": null,
+    "stockStatus": "consultar"
+  }
+]

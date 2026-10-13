@@ -1,0 +1,29 @@
+---
+interface Props {
+  src: string;
+  alt: string;
+  class?: string;
+  eager?: boolean;
+}
+
+const { src, alt, class: className, eager = false } = Astro.props;
+const isProductPhoto = src.includes("/images/products/") && src.endsWith(".png");
+---
+
+<div
+  class:list={[
+    "flex items-center justify-center overflow-hidden",
+    isProductPhoto ? "bg-white p-4 sm:p-6" : "bg-surface",
+    className,
+  ]}
+>
+  <img
+    src={src}
+    alt={alt}
+    class:list={[
+      "transition",
+      isProductPhoto ? "max-h-full w-full object-contain" : "h-full w-full object-cover",
+    ]}
+    loading={eager ? "eager" : "lazy"}
+  />
+</div>

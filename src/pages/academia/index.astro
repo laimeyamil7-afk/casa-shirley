@@ -1,0 +1,34 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import PageHero from "@/components/PageHero.astro";
+import { getAcademyCourse } from "@/lib/academy";
+
+const course = await getAcademyCourse();
+---
+
+<Layout title={course.title} description={course.description}>
+  <PageHero eyebrow="Formación" title={course.title} description={course.subtitle} />
+
+  <section class="section-padding">
+    <div class="container-narrow grid gap-12 lg:grid-cols-3">
+      <div class="lg:col-span-2 space-y-6">
+        <p class="text-muted leading-relaxed text-lg">{course.description}</p>
+        <div>
+          <h2 class="text-xl font-bold text-ink">Temario orientativo</h2>
+          <ol class="mt-4 list-decimal space-y-3 pl-5 text-muted">
+            {course.modules.map((mod) => (
+              <li>{mod}</li>
+            ))}
+          </ol>
+        </div>
+        <p class="text-sm text-muted"><strong class="text-ink">Dirigido a:</strong> {course.audience}</p>
+        <p class="text-sm text-muted">{course.modality}</p>
+      </div>
+      <aside class="rounded-2xl border border-brand-200 bg-brand-50 p-8 h-fit">
+        <h2 class="text-lg font-bold text-ink">Próxima cohorte</h2>
+        <p class="mt-2 text-sm text-muted">Cupos y calendario se confirmarán con el cliente en la versión final del sitio.</p>
+        <a href="/academia/inscripcion" class="btn-primary mt-6 w-full text-center">{course.ctaLabel}</a>
+      </aside>
+    </div>
+  </section>
+</Layout>

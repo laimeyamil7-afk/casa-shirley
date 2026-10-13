@@ -1,0 +1,56 @@
+---
+import Layout from "../layouts/Layout.astro";
+import PageHero from "../components/PageHero.astro";
+import { legalPlaceholders } from "../config/site";
+---
+
+<Layout title="Nosotros" description="Conocé Casa Shirley: importación, maquinaria textil y formación.">
+  <PageHero
+    eyebrow="Nosotros"
+    title="Experiencia en importación aplicada al rubro textil"
+    description="Somos importadores directos enfocados en maquinaria de coser industrial, repuestos y accesorios, con venta mayorista y minorista y formación para quienes quieren importar con criterio."
+  />
+
+  <section class="section-padding">
+    <div class="container-narrow grid gap-12 lg:grid-cols-2">
+      <div class="prose-narrow space-y-4 text-muted">
+        <p>
+          Casa Shirley nace del trabajo diario con proveedores en China y clientes en Argentina:
+          talleres, confeccionistas y emprendedores que necesitan equipos confiables y acompañamiento comercial.
+        </p>
+        <p>
+          Nuestro enfoque combina <strong class="text-ink">stock y asesoramiento técnico-comercial</strong> con
+          una línea formativa para entender costos, logística y buenas prácticas de importación.
+        </p>
+        <p class="text-sm italic">
+          Texto institucional sujeto a revisión con el cliente en la versión final.
+        </p>
+      </div>
+      <aside class="rounded-2xl border border-border bg-white p-8 shadow-sm">
+        <h2 class="text-lg font-bold text-ink">Datos de la empresa</h2>
+        <dl class="mt-6 space-y-4 text-sm">
+          <div>
+            <dt class="font-semibold text-muted">Razón social</dt>
+            <dd class="mt-1 text-ink">{legalPlaceholders.razonSocial}</dd>
+          </div>
+          <div>
+            <dt class="font-semibold text-muted">CUIT</dt>
+            <dd class="mt-1 text-ink">{legalPlaceholders.cuit}</dd>
+          </div>
+          <div>
+            <dt class="font-semibold text-muted">Domicilio fiscal</dt>
+            <dd class="mt-1 text-ink">{legalPlaceholders.domicilioFiscal}</dd>
+          </div>
+          <div>
+            <dt class="font-semibold text-muted">Punto de atención</dt>
+            <dd class="mt-1 text-ink">{legalPlaceholders.domicilioComercial}</dd>
+          </div>
+          <div>
+            <dt class="font-semibold text-muted">Horarios</dt>
+            <dd class="mt-1 text-ink">{legalPlaceholders.horarios}</dd>
+          </div>
+        </dl>
+      </aside>
+    </div>
+  </section>
+</Layout>

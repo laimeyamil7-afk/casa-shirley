@@ -1,0 +1,27 @@
+---
+import { isCartActive } from "@/config/features";
+
+interface Props {
+  productSlug: string;
+  productName: string;
+  unitPrice?: number | null;
+  class?: string;
+}
+
+const { productSlug, productName, unitPrice = null, class: className } = Astro.props;
+---
+
+{
+  isCartActive() ? (
+    <button
+      type="button"
+      class:list={["btn-primary", className]}
+      data-add-to-cart
+      data-slug={productSlug}
+      data-name={productName}
+      data-price={unitPrice ?? ""}
+    >
+      Agregar al carrito
+    </button>
+  ) : null
+}

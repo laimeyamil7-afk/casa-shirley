@@ -1,0 +1,36 @@
+---
+import Layout from "../layouts/Layout.astro";
+import PageHero from "../components/PageHero.astro";
+import { whatsappUrl } from "../config/site";
+---
+
+<Layout title="Mayoristas" description="Condiciones para talleres, revendedores y compras por volumen en Casa Shirley.">
+  <PageHero
+    eyebrow="Mayoristas"
+    title="Compras por volumen y revendedores"
+    description="Importación directa, surtido de accesorios y maquinaria industrial. Consultá condiciones comerciales según tu volumen y rubro."
+  />
+
+  <section class="section-padding">
+    <div class="container-narrow max-w-3xl space-y-6 text-muted leading-relaxed">
+      <p>
+        Trabajamos con talleres, confeccionistas y comercios que necesitan abastecimiento recurrente de
+        máquinas, repuestos y accesorios importados. Cada operación mayorista se cotiza según modelo,
+        cantidad y plazos de entrega.
+      </p>
+      <ul class="list-disc space-y-2 pl-5 text-ink">
+        <li>Listado de equipos y accesorios según disponibilidad</li>
+        <li>Asesoramiento para armado de pedido mixto</li>
+        <li>Coordinación de entrega — [Detalle por confirmar]</li>
+      </ul>
+      <a
+        href={whatsappUrl("Hola Casa Shirley, consulto por compras mayoristas.")}
+        class="btn-whatsapp inline-flex"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Consultar por WhatsApp
+      </a>
+    </div>
+  </section>
+</Layout>

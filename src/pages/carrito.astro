@@ -1,0 +1,31 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import PageHero from "@/components/PageHero.astro";
+import { isCartActive } from "@/config/features";
+
+if (!isCartActive()) {
+  return Astro.redirect("/maquinas");
+}
+---
+
+<Layout title="Carrito" description="Tu pedido en Casa Shirley">
+  <PageHero title="Carrito" description="Revisá los equipos y enviá el pedido por WhatsApp." />
+
+  <section class="section-padding pt-0">
+    <div class="container-narrow max-w-2xl">
+      <p id="cart-empty" class="hidden rounded-2xl border border-border bg-white p-8 text-center text-muted">
+        El carrito está vacío.{" "}
+        <a href="/maquinas" class="font-semibold text-brand-600 hover:text-brand-700">Ver máquinas</a>
+      </p>
+      <ul id="cart-lines" class="flex flex-col gap-3" />
+      <div id="cart-actions" class="mt-8 hidden flex flex-col gap-3 sm:flex-row">
+        <button type="button" id="cart-checkout" class="btn-whatsapp flex-1">
+          Enviar pedido por WhatsApp
+        </button>
+        <button type="button" id="cart-clear" class="btn-secondary flex-1">
+          Vaciar carrito
+        </button>
+      </div>
+    </div>
+  </section>
+</Layout>

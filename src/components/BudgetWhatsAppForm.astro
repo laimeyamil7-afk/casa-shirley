@@ -1,0 +1,83 @@
+---
+import { whatsappNumber } from "../config/site";
+---
+
+<div class="w-full max-w-md mx-auto lg:mx-0 lg:max-w-none text-left">
+  <form id="budget-form" class="space-y-4 rounded-2xl bg-white/10 p-6 backdrop-blur-sm border border-white/15">
+    <label class="block text-sm">
+      <span class="font-medium text-white/90">Nombre</span>
+      <input
+        required
+        name="nombre"
+        class="mt-1.5 w-full rounded-lg border border-white/20 bg-white/95 px-3 py-2.5 text-ink"
+        placeholder="Tu nombre"
+      />
+    </label>
+    <label class="block text-sm">
+      <span class="font-medium text-white/90">Teléfono / WhatsApp</span>
+      <input
+        required
+        name="telefono"
+        class="mt-1.5 w-full rounded-lg border border-white/20 bg-white/95 px-3 py-2.5 text-ink"
+        placeholder="11 1234 5678"
+      />
+    </label>
+    <label class="block text-sm">
+      <span class="font-medium text-white/90">¿Qué necesitás?</span>
+      <select
+        name="interes"
+        class="mt-1.5 w-full rounded-lg border border-white/20 bg-white/95 px-3 py-2.5 text-ink"
+      >
+        <option value="Máquina industrial">Máquina industrial</option>
+        <option value="Repuestos o accesorios">Repuestos o accesorios</option>
+        <option value="Compra mayorista">Compra mayorista</option>
+        <option value="Global Conexión Importación">Global Conexión Importación</option>
+        <option value="Otro">Otro</option>
+      </select>
+    </label>
+    <label class="block text-sm">
+      <span class="font-medium text-white/90">Modelo o detalle del pedido</span>
+      <textarea
+        required
+        name="detalle"
+        rows="3"
+        class="mt-1.5 w-full rounded-lg border border-white/20 bg-white/95 px-3 py-2.5 text-ink"
+        placeholder="Ej: overlock 5 hilos, collareta, cantidad..."
+      />
+    </label>
+    <label class="block text-sm">
+      <span class="font-medium text-white/90">Cantidad (opcional)</span>
+      <input
+        name="cantidad"
+        class="mt-1.5 w-full rounded-lg border border-white/20 bg-white/95 px-3 py-2.5 text-ink"
+        placeholder="1"
+      />
+    </label>
+    <button type="submit" class="btn-whatsapp w-full py-3.5 text-base">
+      Enviar presupuesto por WhatsApp
+    </button>
+  </form>
+</div>
+
+<script define:vars={{ whatsappNumber }}>
+  const form = document.getElementById("budget-form");
+  form?.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const fd = new FormData(form);
+    const nombre = fd.get("nombre");
+    const telefono = fd.get("telefono");
+    const interes = fd.get("interes");
+    const detalle = fd.get("detalle");
+    const cantidad = fd.get("cantidad");
+
+    let msg = `Hola Casa Shirley, quiero pedir un presupuesto.\n\n`;
+    msg += `Nombre: ${nombre}\n`;
+    msg += `Teléfono: ${telefono}\n`;
+    msg += `Interés: ${interes}\n`;
+    if (cantidad) msg += `Cantidad: ${cantidad}\n`;
+    msg += `\nDetalle:\n${detalle}`;
+
+    const url = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(msg)}`;
+    window.open(url, "_blank", "noopener,noreferrer");
+  });
+</script>

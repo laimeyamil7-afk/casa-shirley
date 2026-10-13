@@ -1,0 +1,113 @@
+---
+/** Script cliente mínimo cuando el carrito está activo (fase 2). */
+import { isCartActive } from "@/config/features";
+---
+
+{isCartActive() && (
+  <script>
+    import {
+      addToCart,
+      getCartItemCount,
+      loadCart,
+      removeFromCart,
+      clearCart,
+    } from "@/lib/commerce/cart-store";
+    import { initiateCartCheckout } from "@/lib/commerce/checkout/cart";
+
+    function syncBadge() {
+      const badge = document.getElementById("cart-badge");
+      if (!badge) return;
+      const count = getCartItemCount();
+      if (count <= 0) {
+        badge.classList.add("hidden");
+        badge.textContent = "";
+        return;
+      }
+      badge.classList.remove("hidden");
+      badge.textContent = String(count > 99 ? "99+" : count);
+    }
+
+    function renderCartPage() {
+      const list = document.getElementById("cart-lines");
+      const empty = document.getElementById("cart-empty");
+      const actions = document.getElementById("cart-actions");
+      if (!list || !empty || !actions) return;
+
+      const cart = loadCart();
+      list.innerHTML = "";
+
+      if (cart.lines.length === 0) {
+        empty.classList.remove("hidden");
+        actions.classList.add("hidden");
+        return;
+      }
+
+      empty.classList.add("hidden");
+      actions.classList.remove("hidden");
+
+      for (const line of cart.lines) {
+        const row = document.createElement("li");
+        row.className =
+          "flex flex-col gap-2 rounded-xl border border-border bg-white p-4 sm:flex-row sm:items-center sm:justify-between";
+        row.innerHTML = `
+          <div>
+            <p class="font-semibold text-ink">${line.name}</p>
+            <p class="text-sm text-muted">Cantidad: ${line.quantity}${
+              line.unitPrice != null ? ` · Ref. $${line.unitPrice}` : ""
+            }</p>
+          </div>
+          <button type="button" class="text-sm font-semibold text-brand-600 hover:text-brand-700" data-remove-cart data-slug="${line.productSlug}">Quitar</button>
+        `;
+        list.appendChild(row);
+      }
+    }
+
+    document.addEventListener("click", (event) => {
+      const target = event.target as HTMLElement | null;
+      const addBtn = target?.closest("[data-add-to-cart]") as HTMLElement | null;
+      if (addBtn) {
+        const slug = addBtn.dataset.slug;
+        const name = addBtn.dataset.name;
+        if (!slug || !name) return;
+        const priceRaw = addBtn.dataset.price;
+        const unitPrice = priceRaw ? Number(priceRaw) : null;
+        addToCart({
+          productSlug: slug,
+          name,
+          quantity: 1,
+          unitPrice: Number.isFinite(unitPrice) ? unitPrice : null,
+        });
+        syncBadge();
+        addBtn.textContent = "Agregado ✓";
+        window.setTimeout(() => {
+          addBtn.textContent = "Agregar al carrito";
+        }, 1200);
+      }
+
+      const removeBtn = target?.closest("[data-remove-cart]") as HTMLElement | null;
+      if (removeBtn?.dataset.slug) {
+        removeFromCart(removeBtn.dataset.slug);
+        syncBadge();
+        renderCartPage();
+      }
+    });
+
+    document.getElementById("cart-checkout")?.addEventListener("click", () => {
+      const result = initiateCartCheckout(loadCart());
+      if (result.ok) {
+        window.open(result.url, "_blank", "noopener,noreferrer");
+      } else {
+        window.alert(result.reason);
+      }
+    });
+
+    document.getElementById("cart-clear")?.addEventListener("click", () => {
+      clearCart();
+      syncBadge();
+      renderCartPage();
+    });
+
+    syncBadge();
+    renderCartPage();
+  </script>
+)}
